@@ -1,10 +1,10 @@
-workspace(name = "me_dinowernli_kythe_server")
+workspace(name = "me_dinowernli_faucet")
 
 http_archive(
     name = "io_bazel_rules_go",
-    sha256 = "099b474b368b730046b1d03a3f1923dc67f25b8497791663b6080c7605a05067",
-    strip_prefix = "rules_go-0.4.1",
-    url = "https://github.com/bazelbuild/rules_go/archive/0.4.1.tar.gz",
+    sha256 = "afec53d875013de6cebe0e51943345c587b41263fdff36df5ff651fbf03c1c08",
+    strip_prefix = "rules_go-0.4.4",
+    url = "https://github.com/bazelbuild/rules_go/archive/0.4.4.tar.gz",
 )
 
 load("@io_bazel_rules_go//go:def.bzl", "go_repositories", "new_go_repository")
