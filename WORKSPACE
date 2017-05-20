@@ -21,3 +21,9 @@ http_archive(
     url = "https://github.com/bazelbuild/bazel/archive/0.4.1.tar.gz",
 )
 
+new_go_repository(
+    name = "com_github_sirupsen_logrus",
+    importpath = "github.com/Sirupsen/logrus",
+    tag = "v0.11.0",
+)
+

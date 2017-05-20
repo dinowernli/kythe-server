@@ -4,4 +4,7 @@ go_binary(
     name = "main",
     srcs = ["main.go"],
     visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_sirupsen_logrus//:go_default_library",
+    ],
 )
