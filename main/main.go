@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+
+	"github.com/Sirupsen/logrus"
 )
 
 const (
@@ -14,13 +16,17 @@ const (
 // TODO(dino): Split this yolo-file up into packages.
 
 func main() {
-	fmt.Println("A server for Kythe... under construction")
+	logger := logrus.New()
 
 	// Load the graph store.
 	graphStore := &graphStore{}
+	logger.Info("loaded graphstore")
 
 	// Construct an index from it.
 	index := createIndex(graphStore)
+	logger.Info("loaded index")
+
+	logger.Info("starting server")
 
 	// Create a handler and serve.
 	handler := &httpHandler{index: index}
@@ -36,6 +42,7 @@ type httpHandler struct {
 }
 
 func (h *httpHandler) nodes(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
 	fmt.Fprintf(w, "Hello world. Nodes: \n")
 	names := h.index.List()
 	for _, name := range names {
@@ -44,6 +51,7 @@ func (h *httpHandler) nodes(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *httpHandler) node(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
 	nodeName := strings.TrimPrefix(r.URL.Path, nodePathPattern)
 	fmt.Fprintf(w, "Hello world. Node name: %s", nodeName)
 }
